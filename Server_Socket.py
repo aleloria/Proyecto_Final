@@ -1,4 +1,4 @@
-import socket, json, csv, smtplib, ssl, Sms
+import socket, json, csv, smtplib, ssl, Sms, os
 import matplotlib.pyplot as plt
 import datetime
 
@@ -35,7 +35,7 @@ def send_mail():
     smtp_server = "smtp.gmail.com"
     sender_email = "ecadb.mail@gmail.com"  # Enter your address
     receiver_email = "aleloria@gmail.com"  # Enter receiver address
-    password = 'prueba_eca'
+    password = os.environ['GMAIL_PASSWORD_TEST']
     message = """
     Subject: Temperature Warning!!!!\n\n
     The system temperature has a recent increase.
