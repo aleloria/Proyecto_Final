@@ -10,3 +10,20 @@ En la PC hay otro programa realizado en Python el cual tiene el servidor para el
 Para el envio del e-mail se hace uso de la libreria smtplin y ssl.
 
 Para el envio del SMS se hace uso del servicio de Twilio, el cual prove un API para envio de SMS, correo, otros servicios para complementar las aplicaciones que uno crea. Hay que instarlar unos paquetes para que funcione el servicio, la pagina tiene muy buena documentación para poder crear la función para el envío del mensaje. Se uso la versión de prueba y tiene soporte para varios lenguajes de programación.
+
+# Capturas de pantalla
+
+## Circuito para Pruebas
+![title](Imagenes/Circuito.jpg)
+
+## Bandeja de entrada de correo
+
+![title](Imagenes/Bandeja_mail.png)
+
+## Correo con la alerta
+
+![title](Imagenes/Correo.png)
+
+## Bandeja de los SMS
+
+![title](Imagenes/Bandeja_SMS.png)
