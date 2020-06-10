@@ -8,24 +8,25 @@ import sys
 from machine import Pin
 from machine import ADC
 
+#Configuracion del ADC
+# Sensor de temperatura
 adc_temp = ADC(Pin(39))
 adc_temp.atten(ADC.ATTN_11DB)
 adc_temp.width(ADC.WIDTH_12BIT)
-
+# Fotocelda
 adc_fot = ADC(Pin(36))
 adc_fot.atten(ADC.ATTN_11DB)
 adc_fot.width(ADC.WIDTH_10BIT)
 
-
+# Se hace la lectura de los sensores
 def read_sensors():
     sensor1 = adc_temp.read()
     time.sleep_ms(10)
     sensor2 = adc_fot.read()
     return sensor1, sensor2
 
-
+#  Conecta el microcontrolador a la red WiFi
 def do_connect():
-    # import network
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
     if not wlan.isconnected():
@@ -35,7 +36,7 @@ def do_connect():
             pass
     print('network config:', wlan.ifconfig())
 
-
+# Crea el socket para el envio de los datos
 def my_socket():
     # Create a TCP/IP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -56,4 +57,6 @@ def my_socket():
         sock.close()
 
 do_connect()
-my_socket()
+while True:
+    my_socket()
+    time.sleep(15)
