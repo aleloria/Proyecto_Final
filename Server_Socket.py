@@ -1,6 +1,6 @@
 import socket, json, csv, smtplib, ssl, Sms
 import matplotlib.pyplot as plt
-from datetime import datetime
+import datetime
 from pandas import DataFrame
 import numpy as np
 
@@ -15,8 +15,12 @@ def create_logfile():
 def data_format(info):
     info[0] = ((info[0] * 4)/10.23)-50
     info[1] = (info[1] * 100)/750
+    print(info)
     #values['Temp'].append(info[0])
     #values['Int Luminica'].append(info[1])
+    if info[0] > 30 or info[1] == 0:
+        send_mail()
+        Sms.send_SMS("Temperature Warning!!!! The system temperature has a recent increase. Check or send technical support to verify.")
     guardarInfo(info)
 
 def show_data():
@@ -81,15 +85,11 @@ while True:
             data = connection.recv(48)
             if data:
                 my_data = json.loads(data)
-                print(my_data)
                 data_format(my_data)
-                send_mail()
-                Sms.send_SMS("Temperature Warning!!!! The system temperature has a recent increase. Check or send technical support to verify.")
 
             elif not data:
                 print('no data from', client_address)
                 break
-
     finally:
         # Clean up the connection
         connection.close()
